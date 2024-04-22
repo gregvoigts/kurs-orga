@@ -16,7 +16,7 @@ class Meeting(SQLModel, table=True):
 
 class PersonMeeting(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
-    person_id: int
-    meeting_id: int
+    person_id: int | None = Field(default=None, foreign_key="person.id")
+    meeting_id: int | None = Field(default=None, foreign_key="meeting.id")
     token: Optional[str] = None
     attended: Optional[bool] = None

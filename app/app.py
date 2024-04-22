@@ -47,7 +47,7 @@ def rueckmeldung():
 def showPersons():
     db = database.get().__next__()
     meeting_id = request.args.get("meeting_id")
-    stmt = select(models.PersonMeeting).where(models.PersonMeeting.attended ==
-                                              True and models.PersonMeeting.meeting_id == meeting_id)
+    stmt = select(models.PersonMeeting, models.Person).join(models.Person).where(models.PersonMeeting.attended ==
+                                                                                 True and models.PersonMeeting.meeting_id == meeting_id)
     persons = db.exec(stmt).all()
-    return persons.__str__()
+    return persons[0][1].name
