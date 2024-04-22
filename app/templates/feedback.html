@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+</head>
+<body>
+    <h1>Workshop Feedback</h1>
+    {% if complete %}
+        <p>Danke für die Rückmeldung</p>
+    {% elif person.attended != None %}
+        <p>Sie haben sich bereits zurückgemeldet:</p>
+        <p>Sie wollen am Workshop{%if not person.attended%} nicht{% endif %} Teilnehmen</p>
+        <p>Wollen sie ihre Rückmeldung ändern?</p>
+    {% else %}
+        <p>Bitte geben Sie Ihr Feedback zum Workshop ab:</p>
+    {% endif %}
+    
+    {% if not complete %}
+    <a href="{{url}}&feedback=Y" type="button">Teilnahme</a>
+    <a href="{{url}}&feedback=N" type="button">Nicht Teilnahme</a>
+    {% endif %}
+    
+    <!-- Add your JavaScript code here to handle button clicks -->
+    
+</body>
+</html>
